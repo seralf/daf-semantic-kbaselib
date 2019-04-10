@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.almawave.linkeddata.kb</groupId>
 	<artifactId>kbaselib</artifactId> <!-- {artifact}-scala_2.11 -->
-	<version>0.1.8</version>
+	<version>0.2.0</version>
 	<name>kbaselib</name>
 	<description>kbaselib: core library for accessing to RDF4J abstractions</description>
 
@@ -80,11 +80,11 @@
 			<artifactId>rdf4j-runtime</artifactId>
 			<version>2.2.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.eclipse.rdf4j</groupId>
-			<artifactId>rdf4j-sail-solr</artifactId>
-			<version>2.2.4</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.eclipse.rdf4j</groupId> -->
+<!-- 			<artifactId>rdf4j-sail-solr</artifactId> -->
+<!-- 			<version>2.2.4</version> -->
+<!-- 		</dependency> -->
 
 		<!-- owlapi-rio per OWL! -->
 		<!-- <dependency> -->
@@ -97,15 +97,11 @@
 			<groupId>virtuoso</groupId>
 			<artifactId>virtuoso-rdf4j</artifactId>
 			<version>0.1</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/virt_rdf4j.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>virtuoso</groupId>
 			<artifactId>virtuoso-jdbc4</artifactId>
 			<version>0.1</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/virtjdbc4_2.jar</systemPath>
 		</dependency>
 
 		<!-- jackson -->
@@ -251,6 +247,7 @@
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
+						<phase>package</phase>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -259,6 +256,7 @@
 			</plugin>
 
 			<!-- scaladoc -->
+			<!-- TODO: review the process to build and attach scaladoc -->
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
 				<artifactId>scala-maven-plugin</artifactId>
@@ -269,7 +267,8 @@
 						<goals>
 							<goal>doc</goal>
 						</goals>
-						<phase>prepare-package</phase>
+						<!-- <phase>prepare-package</phase> -->
+						<phase>package</phase>
 						<configuration>
 							<args>
 								<arg>-no-link-warnings</arg>
@@ -284,6 +283,7 @@
 					</execution>
 					<execution>
 						<id>Compile</id> <!-- serve? -->
+						<phase>package</phase>
 						<goals>
 							<goal>compile</goal>
 							<goal>testCompile</goal>
@@ -301,5 +301,18 @@
 		</plugins>
 
 	</build>
+
+	<repositories>
+		<repository>
+			<id>mvn-repo</id>
+			<url>https://raw.githubusercontent.com/seralf/mvn-repo/master/repository</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

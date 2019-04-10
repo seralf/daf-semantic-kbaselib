@@ -16,8 +16,6 @@ import it.almawave.linkeddata.kb.repo.managers.SPARQLManager
 import it.almawave.linkeddata.kb.repo.managers.RDFFileManager
 import it.almawave.linkeddata.kb.repo.managers.RDFCatalogManager
 
-//import it.almawave.linkeddata.kb.validator.ValidationQueryResult
-
 /**
  *
  * IDEA: use an implicit connection
@@ -31,12 +29,9 @@ import it.almawave.linkeddata.kb.repo.managers.RDFCatalogManager
  * TODO: import codebase of Configuration wrapper
  *
  * IDEA: default usage of TryLog, wrapper for external Java API
+ * CHECK: TryLog should be a side-effect monad!
  */
 class RDFRepositoryBase(repo: Repository) {
-
-  //  System.setProperty("org.eclipse.rdf4j.repository.debug", "false")
-
-  //  val logger = Logger.underlying()
 
   implicit val logger = LoggerFactory.getLogger(this.getClass)
 
@@ -103,7 +98,7 @@ class RDFRepositoryBase(repo: Repository) {
   /*
    *  TODO
    *  val catalog = new RDFCatalog(repo)
-   *  
+   *
    *  the catalog object should be able to create a federated repository over the ontologies/vocabularies
    */
 
